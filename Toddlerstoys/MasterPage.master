@@ -1,0 +1,191 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <link href="../StyleSheet.css" rel="stylesheet" />
+    <title>Toddler's Toys</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <div>
+        <style>
+            ul {
+                display: flexbox;
+                align-items: center;
+                justify-content: center;
+                height: 50px;
+                text-align: center;
+                margin: 0px 10px 10px 10px;
+                padding: 0;
+                overflow: hidden;
+                position: static;
+                background-color:black;
+            }
+            li {
+                margin:auto;
+                font-size: 15px;
+                list-style: none;
+                float: left;
+            }
+
+                li a {
+                    display: block;
+                    color: white;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+
+                li :hover {
+                    box-sizing: padding-box;
+                    background-color: deepskyblue;
+                }
+        </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <img src="../Pictures/Saved Pictures/logo-design-for-kids-toys.jpg" height="130" width="170" class="logo" />
+            </div>
+        <div style="height: 100px;">
+            <div class="banner">
+                <h1 class="header">Toddler's Toys</h1>
+            </div>
+        </div>
+        </div>
+        </div>
+    <div>
+
+        <div>
+            <div>
+                <form>
+                    <ul>
+                        <li><a href="index.aspx" style="color: #FFFFFF">Home</a></li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="dropbtn">Remote Control Vehicles</button>
+                                <div class="dropdown-content">
+                                    <asp:DataList ID="DataList1" runat="server" CssClass="dtlist" AlternatingItemStyle-HorizontalAlign="Center" DataSourceID="SqlDataSource1" DataKeyField="cat_id">
+
+                                        <AlternatingItemStyle HorizontalAlign="Center"></AlternatingItemStyle>
+                                        <ItemTemplate>
+                                            <a href='product.aspx?cat=<%# Eval("cat_id") %>&sub=<%# Eval("sub_id") %>' class="item"><%# Eval("sub_name") %></a>
+                                        </ItemTemplate>
+                                    </asp:DataList>
+
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="dropbtn">Games & Puzzles</button>
+                                <div class="dropdown-content">
+                                    <asp:DataList ID="DataList2" runat="server" AlternatingItemStyle-HorizontalAlign="Center" DataSourceID="SqlDataSource2" DataKeyField="cat_id">
+
+                                        <AlternatingItemStyle HorizontalAlign="Center"></AlternatingItemStyle>
+                                        <ItemTemplate>
+                                            <a href='product.aspx?cat=<%# Eval("cat_id") %>&sub=<%# Eval("sub_id") %>' class="item"><%# Eval("sub_name") %></a>
+                                        </ItemTemplate>
+                                    </asp:DataList>
+
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="dropbtn">Action Figures</button>
+                                <div class="dropdown-content">
+                                    <asp:DataList ID="DataList3" runat="server" CssClass="dtlist" AlternatingItemStyle-HorizontalAlign="Center" DataSourceID="SqlDataSource3" DataKeyField="cat_id">
+
+                                        <AlternatingItemStyle HorizontalAlign="Center"></AlternatingItemStyle>
+                                        <ItemTemplate>
+                                            <a href='product.aspx?cat=<%# Eval("cat_id") %>&sub=<%# Eval("sub_id") %>' class="item"><%# Eval("sub_name") %></a>
+                                        </ItemTemplate>
+                                    </asp:DataList>
+
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="dropbtn">Dolls & Accessories</button>
+                                <div class="dropdown-content">
+                                    <asp:DataList ID="DataList4" runat="server" CssClass="dtlist" AlternatingItemStyle-HorizontalAlign="Center" DataSourceID="SqlDataSource4" DataKeyField="cat_id">
+
+                                        <AlternatingItemStyle HorizontalAlign="Center"></AlternatingItemStyle>
+                                        <ItemTemplate>
+                                            <a href='product.aspx?cat=<%# Eval("cat_id") %>&sub=<%# Eval("sub_id") %>' class="item"><%# Eval("sub_name") %></a>
+                                        </ItemTemplate>
+                                    </asp:DataList>
+
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="dropbtn">Soft Toys</button>
+                                <div class="dropdown-content">
+                                    <asp:DataList ID="DataList5" runat="server" CssClass="dtlist" AlternatingItemStyle-HorizontalAlign="Center" DataSourceID="SqlDataSource5" DataKeyField="cat_id">
+
+                                        <AlternatingItemStyle HorizontalAlign="Center"></AlternatingItemStyle>
+                                        <ItemTemplate>
+                                            <a href='product.aspx?cat=<%# Eval("cat_id") %>&sub=<%# Eval("sub_id") %>' class="item"><%# Eval("sub_name") %></a>
+                                        </ItemTemplate>
+                                    </asp:DataList>
+
+
+                                </div>
+                            </div>
+                        </li>
+                        
+                        
+
+                        <li><a href="about_us.aspx" style="color: #FFFFFF">About</a></li>
+                        <li><a href="show_contact.aspx" style="color: #FFFFFF">Contact</a></li>
+                        <li><a href="profile.aspx" style="color: #FFFFFF">Profile</a></li>
+                        <li><a href="add_to_cart.aspx" style="color: #FFFFFF">My Cart  [ <% Response.Write(Session["count"]); %> ]</a></li>
+                        <li><a href="order.aspx" style="color: #FFFFFF">My Order</a></li>
+
+                        <%
+                            if (Session["user"] == null)
+                            { %>
+                        <li><a href="login.aspx" style="color: #FFFFFF">Login</a></li>
+                        <%  }
+
+                            else
+                            { %>
+                        <li><a href="logout.aspx" style="color: #FFFFFF">Log Out</a></li>
+                        <% }
+                
+                        %>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DB_KGConnectionString %>" SelectCommand="SELECT [sub_id], [cat_id], [sub_name] FROM [sub_cat] where cat_id=1"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:DB_KGConnectionString %>" SelectCommand="SELECT [sub_id], [cat_id], [sub_name] FROM [sub_cat] where cat_id=2"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:DB_KGConnectionString %>" SelectCommand="SELECT [sub_id], [cat_id], [sub_name] FROM [sub_cat] where cat_id=3"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:DB_KGConnectionString %>" SelectCommand="SELECT [sub_id], [cat_id], [sub_name] FROM [sub_cat] where cat_id=4"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:DB_KGConnectionString %>" SelectCommand="SELECT [sub_id], [cat_id], [sub_name] FROM [sub_cat] where cat_id=5"></asp:SqlDataSource>
+
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+    <div>
+        <p class="footer">© 2023 Toddelr's Toys. All Rights Reserved<br/><br/>
+            ------------------------------------------------------------------<br/><br/>
+                Author: Hege Refsnes<br/><br/>
+         <a href="home.aspx">Home</a>
+
+        </p>
+    </div>
+
+</body>
+</html>
